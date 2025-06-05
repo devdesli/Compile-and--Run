@@ -1,4 +1,28 @@
 {
+  "c-and-r.folders": {
+    "type": "array",
+    "description": "Array of folder-specific command sets. Each object includes a 'path' and a 'commands' array.",
+    "items": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Absolute folder path to match."
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Commands to run when the folder is active."
+        }
+      },
+      "required": [
+        "path",
+        "commands"
+      ]
+    }
+  },
   "name": "c-and-r",
   "displayName": "c_and_r",
   "description": "compile and run quicker",
@@ -10,11 +34,32 @@
     "Other"
   ],
   "main": "./extension.js",
+  "activationEvents": [
+    "onCommand:c-and-r.car"
+  ],
   "contributes": {
-    "commands": [{
-      "command": "c-and-r.car",
-      "title": "compile and run"
-    }]
+    "commands": [
+      {
+        "command": "c-and-r.car",
+        "title": "compile and run"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "C-and-R Configuration",
+      "properties": {
+        "c-and-r.commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "echo Hello from CAR"
+          ],
+          "description": "Commands to run in terminal when CAR is triggered. Each string is one line."
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",
