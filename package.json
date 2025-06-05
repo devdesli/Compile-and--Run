@@ -12,8 +12,8 @@
   "main": "./extension.js",
   "contributes": {
     "commands": [{
-      "command": "c-and-r.helloWorld",
-      "title": "Hello World"
+      "command": "c-and-r.car",
+      "title": "compile and run"
     }]
   },
   "scripts": {
